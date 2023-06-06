@@ -1,4 +1,4 @@
-#Função menu para identificação do usuario
+# Função menu para identificação do usuário
 def menu():
     n = 0
     print('\n--- Menu ---\n')
@@ -7,7 +7,7 @@ def menu():
     n = resposta
     return n
 
-#Função para cadastrar dados do agricultor e colocar esses dados em uma lista
+# Função para cadastrar dados do agricultor e colocar esses dados em uma lista
 def cadastroAgricultor():
     print("\n--- Cadastro do Agricultor ---\n")
     infoAgricultor = []
@@ -20,7 +20,8 @@ def cadastroAgricultor():
     endereco = input('Digite o seu logradouro e numero: ')
     infoAgricultor.append(endereco)
     return infoAgricultor
-#Função para cadastrar dados da secretaria de ensino e colocar esses dados em uma lista
+
+# Função para cadastrar dados da secretaria de ensino e colocar esses dados em uma lista
 def cadastroSecretaria():
     print("\n--- Cadastro da Secretaria ---\n")
     infoSecretaria = []
@@ -33,12 +34,13 @@ def cadastroSecretaria():
     endereco = input('Digite o seu logradouro e numero: ')
     infoSecretaria.append(endereco)
     return infoSecretaria
-#função para cadastrar osprodutos que o agricultor vai disponibilizar
+
+# Função para cadastrar os produtos que o agricultor vai disponibilizar
 def cadastroProdutoAgro():
-    print("\n--- Cadastro dos produtos do Agricultor ---\n")
-    n= 1
+    print(" \n --- Cadastro dos produtos do Agricultor --- \n ")
     produtoAgro = []
-    while n == 1:
+    resposta = 1
+    while resposta == 1:
         nome = input('Digite o Produto que deseja doar: ')
         produtoAgro.append(nome)
         tipo = input('Digite o tipo do produto doado (vegetal, carne, grão, fruta...): ')
@@ -46,54 +48,51 @@ def cadastroProdutoAgro():
         quantidade = input('Digite a quantidade que deseja doar(Gramas, Kg, caixas, duzias...): ')
         produtoAgro.append(quantidade)
         resposta = int(input('Deseja Adicionar mais algum produto? \n [1] = Sim \n [2] = NÃO \n \n Resposta: '))
-        n = resposta
     return produtoAgro
-#função para cadastrar produtos pedidos pela secretaria!
-def cadastroProdutoSecre():
+
+# Função para cadastrar produtos solicitados pela secretaria
+def cadastroProdutoSec():
     print("\n--- Cadastro dos produtos solicitados pela Secretaria ---\n")
-    n = 1
-    produtoSecre = []
-    while n == 1:
+    produtoSec = []
+    resposta = 1
+    while resposta == 1:
         nome = input('Digite o Produto que necessita receber: ')
-        produtoSecre.append(nome)
+        produtoSec.append(nome)
         tipo = input('Digite o tipo do produto requisitado (vegetal, carne, grão, fruta...): ')
-        produtoSecre.append(tipo)
+        produtoSec.append(tipo)
         quantidade = input('Digite a quantidade que necessita receber (Gramas, Kg, caixas, duzias...): ')
-        produtoSecre.append(quantidade)
-        resposta = int(input('Deseja Adicionar mais algum produto? \n [1] = Sim \n [2] = NÃO \n \n Resposta: '))
-        n = resposta
-    return produtoSecre
+        produtoSec.append(quantidade)
+        resposta = int(input('Deseja adicionar mais um Produto? \n[1] SIM \n[2] NÃO \n Resposta: '))
 
+    return produtoSec
 
-#Função para imprimir quantidade, tipo e produto doado pelo agricultor e dados do agricultor
-def imprimeAgro(infoAgro,produtoAgro):
-    print('--------INFROMAÇÕES DO AGRICULTOR--------')
-    print(f' Nome: {infoAgro[0]}\n Email: {infoAgro[1]}\n CNPJ: {infoAgro[2]}\n Endereço: {infoAgro[3]} ')
+# Função para imprimir quantidade, tipo e produto doado pelo agricultor e dados do agricultor
+def imprimeAgro(infoAgro, produtoAgro):
+    print('--------INFORMAÇÕES DO AGRICULTOR--------')
+    print(f'Nome: {infoAgro[0]} \n Email: {infoAgro[1]} \n CNPJ: {infoAgro[2]} \n Endereço: {infoAgro[3]}')
     print('\n----------------PRODUTOS-----------------\n')
-    print(produtoAgro)
-#Função para imprimir quantidade, tipo e produto requisitado pela secretaria e dados da secretaria
-def imprimeSecre(infoSecretaria,produtoSecre):
-    print('--------INFROMAÇÕES DA SECRETARIA--------')
-    print(f' Nome: {infoSecretaria[0]} \n Email: {infoSecretaria[1]} \n CNPJ: {infoSecretaria[2]} \n Endereço: {infoSecretaria[3]} ')
+    for i in range(0, len(produtoAgro), 3):
+        print(f'Nome: {produtoAgro[i]} \n Tipo: {produtoAgro[i+1]} \n Quantidade: {produtoAgro[i+2]} \n')
+
+# Função para imprimir quantidade, tipo e produto solicitado pela secretaria
+def imprimeSecre(infoSec, produtoSec):
+    print('--------INFORMAÇÕES DA SECRETARIA--------')
+    print(f'Nome: {infoSec[0]} \n Email: {infoSec[1]} \n CNPJ: {infoSec[2]} \n Endereço: {infoSec[3]}')
     print('\n----------------PRODUTOS-----------------\n')
-    print(produtoSecre)
-    
+    for i in range(0,len(produtoSec),3):
+        print(f'Nome: {produtoSec[i]}\nTipo: {produtoSec[i+1]}\nQuantidade: {produtoSec[i+2]}\n')
 
-### Principal
+# Função principal que chama as outras funções
+def principal():
+    resposta = menu()
+    if resposta == 1:
+        infAgri = cadastroAgricultor()
+        prodAgri = cadastroProdutoAgro()
+        imprimeAgro(infAgri, prodAgri)
+    elif resposta == 2:
+        infSec = cadastroSecretaria()
+        prodSecr = cadastroProdutoSec()
+        imprimeSecre(infSec,prodSecr)
 
-n = menu()
-#Valida o tipo de usuário escolhido e mostra o respectivo formulário
-if n == 1: 
-    infAgr = cadastroAgricultor()
-    cadAgr = cadastroProdutoAgro()
-    imprimeAgro(infAgr,cadAgr)
-elif n == 2:
-    infSec = cadastroSecretaria()
-    cadSec = cadastroProdutoSecre()
-    imprimeSecre(infSec,cadSec)
-else:
-    print('----------------')
-    print('Opção invalida, digite novamente!!!')
-    print('---------------- \n\n')
-    while n != 1 and n!=2:
-        n = menu()
+# Chamando a função principal
+principal()
