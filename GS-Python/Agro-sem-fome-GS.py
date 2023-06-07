@@ -25,7 +25,7 @@ def cadastroAgricultor():
 def cadastroSecretaria():
     print("\n\n --- Cadastro da Secretaria ---\n ")
     infoSecretaria = []
-    nome = input('\n Digite o nome completo da secretaria: ')
+    nome = input('\n Digite o nome da secretaria: ')
     infoSecretaria.append(nome)
     email = input('\n Digite o Email : ')
     infoSecretaria.append(email)
@@ -65,7 +65,7 @@ def cadastroProdutoSec():
         resposta = int(input('\n Deseja adicionar mais um Produto? \n[1] SIM \n[2] NÃO \n Resposta: '))
 
     return produtoSec
-
+# Função para mostrar a simulaçao de Agricultores cadastrados 
 def agricultores():
     agricultor = [
         ['João Silva', 'joao@email.com', '123456789', 'Rua A, 123 - SP'],
@@ -74,7 +74,7 @@ def agricultores():
         ['Luciana Oliveira', 'luciana@example.com', '321654987', 'Avenida D, 987 - RJ']
     ]
     return agricultor
-
+# Função para mostrar a simulaçao de produtos do Agricultor cadastrados 
 def agricultoProdutos():
     agroProd = [
         ['João Silva', 'Banana', 'Fruta', '1000 unidades'],
@@ -84,7 +84,7 @@ def agricultoProdutos():
         ['Luciana Oliveira', 'Acem', 'Carne', '22 kg']
     ]
     return agroProd
-
+# Função para mostrar a simulaçao de Secretarias cadastradas 
 def secretariasEnsino():
     secretarias = [
         ['Diretoria Regional de Educação Butantã ', 'smedrebutantaadm@sme.prefeitura.sp.gov.br', '123456789', 'Rua Padre Eugênio Lopes, 361 ,Vila Progredior, SP '],
@@ -93,7 +93,7 @@ def secretariasEnsino():
         ['Diretoria Regional de Educação Guaianases', 'smedreguaianasesadm@sme.prefeitura.sp.gov.br', '321654987', 'Rua Agapito Maluf, 58 - Vila Princesa Isabel - SP']
     ]
     return secretarias
-
+# Função para mostrar a simulaçao de produtos da Secretaria cadastradas 
 def secretariaProdutos():
     secreProd = [
         ['Diretoria Regional de Educação Butantã', 'Banana', 'Fruta', '400 unidades'],
@@ -119,22 +119,26 @@ def imprimeSecre(infoSec, produtoSec):
     print('\n----------------PRODUTOS-----------------\n')
     for i in range(0,len(produtoSec),3):
         print(f'\n Nome: {produtoSec[i]}\nTipo: {produtoSec[i+1]}\nQuantidade: {produtoSec[i+2]}\n')
-
+        
+# Função que imprime a simulaçao de Agricultores cadastrados e seus produtos
 def imprimeAgricultores(agricultores):
     print('\n--------AGRICULTORES CADASTRADOS--------\n')
     for agricultor in agricultores:
         print(f'\n Nome: {agricultor[0]}\n Email: {agricultor[1]}\n CNPJ: {agricultor[2]}\n Endereço: {agricultor[3]}\n')
 
+# Função que imprime a simulaçao de produtos cadastrados pelo Agricultor
 def imprimeProdutos(agroProd):
     print('\n--------PRODUTOS DOS AGRICULTORES--------\n')
     for produto in agroProd:
         print(f'\n Agricultor: {produto[0]}\n Nome: {produto[1]}\n Tipo: {produto[2]}\n Quantidade: {produto[3]}\n')
 
+# Função que imprime a simulaçao de Secretarias cadastradas
 def imprimeSecretarias(secretarias):
     print('\n--------SECRETARIAS CADASTRADOS--------\n')
     for secretaria in secretarias:
         print(f'\n Nome: {secretaria[0]}\n Email: {secretaria[1]}\n CNPJ: {secretaria[2]}\n Endereço: {secretaria[3]}\n')
 
+# Função que imprime a simulaçao de produtos cadastrados pela Secretaria
 def imprimeSecProdutos(secreProd):
     print('\n--------PRODUTOS SOLICITADO PELAS SECRETARIAS--------\n')
     for produtos in secreProd:
@@ -182,10 +186,12 @@ def principal():
               infAgri = cadastroAgricultor()
               prodAgri = cadastroProdutoAgro()
               imprimeAgro(infAgri, prodAgri)
+              print('\n \n----- CADASTRO EFETUADO COM SUCESSO!! -----\n\n')
           elif resposta == 2:
               infSec = cadastroSecretaria()
               prodSecr = cadastroProdutoSec()
               imprimeSecre(infSec,prodSecr)
+              print('\n \n----- CADASTRO EFETUADO COM SUCESSO!! -----\n\n')
           else:
               print('Opção invalida!! Tente novamente!!')
               menu()
@@ -194,7 +200,6 @@ def principal():
         else: ('\n\n Sua Opçao esta invalida!! Vamos começar de novo!!')
     else:
         principal()
-    print('\n \n----- CADASTRO EFETUADO COM SUCESSO!! -----\n\n')
     print('\n \n A EcoByte Agradece pela Atenção!!')
     print('\n \n ---- PROGRAMA ENCERRADO ---- \n\n')
 # Chamando a função principal
